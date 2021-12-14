@@ -1,0 +1,14 @@
+<%- include('../partials/header', {user: user})%>
+	<div class="container">
+		<div>
+			<h2>Checking out... <%= checkout.name %></h2>
+		</div>
+		<ul class="list-group">
+			<% checkout.orders.forEach(function(item){ %>
+				<li class="list-group-item"><%= item.name %> - <span><%= item.quantity %></span> x <span>$ <%= item.price %></span> = <span>$ <%= item.total_price %></li>
+			<% }) %>
+		</ul>
+		<hr>
+		<p><strong>Total <span class="pull-right">$ <%= checkout.total %> </span></strong></p>
+	</div>
+<% include ../partials/footer %>

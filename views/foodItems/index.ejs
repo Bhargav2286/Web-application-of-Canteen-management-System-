@@ -1,0 +1,46 @@
+<%- include('../partials/header', {user: user}) %>
+<div class="row" id="outer_row">
+	<div class="col-lg-10 col-md-6 col-sm-2" id="menu">
+		<div id="items" class="container">
+			<h1><strong>Itenary</strong></h1>
+			<% categories.forEach(function(category) { %>
+				<h2><%= category %></h2>
+				<hr>
+				<div class="row">
+					<% items.forEach(function(item){ %>
+						<% if(item.category === category){ %>
+							<div class="col-md-4 col-sm-4" id="view">
+								<% if (user.type === "Manager") { %>
+									<a class="pull-right" href="/Items/<%= item._id %>/edit">edit</a>
+								<% } %>
+								<div class="thumbnail">
+									<img src="<%= item.image %>">
+								</div>
+								<div class="caption-full" id="item">
+									<h4 class="pull-right">$ <%= parseFloat(item.price) %></h4>
+									<h3 id="item_name"><%= item.name %></h3>
+									<h3 id="try_me"><%= item.description %></h3>
+									<a class="pull-right" href="/items/<%= item._id %>">...more</a>
+									<button id="minus" class="btn btn-default inline-view"><i class='fa fa-minus' aria-hidden='true'></i></button>
+									<p id="select-num" class="inline-view"></p>
+									<button id="plus" class="btn btn-default inline-view"><i class='fa fa-plus' aria-hidden='true'></i></button>
+									<button id="select-btn" class="btn btn-success">Select Item</button>
+								</div>
+							</div>
+						<% } %>
+					<% }) %>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+	<div class="col-lg-2" id="cart">
+		<div class="inline-view">
+			<h1>Your Cart</h1>
+			<div>
+				<ul id="cart_list"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

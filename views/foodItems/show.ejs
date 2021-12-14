@@ -1,0 +1,27 @@
+<%- include('../partials/header', {user: user}) %>
+	<div class="container">
+		<div class="thumbnail">
+			<img src="<%= item.image %>">
+		</div>
+		<div class="caption-full">
+			<h4 class="pull-right">$ <%= parseFloat(item.price) %></h4>
+			<h2><%= item.name %></h2>
+			<h3><%= item.description %></h3>
+		</div>
+		<a href="/items">Go Back</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3>
+					Comments
+					<a class="btn btn-sm btn-success" id="comment-btn" href="/items/<%= item._id %>/comment/new">Leave a comment</a>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<% item.comments.forEach(function(comment){ %>
+					<p><strong><%= comment.author %></strong>
+					<p><%= comment.content %></p>
+				<% }) %>
+			</div>
+		</div>
+	</div>
+<% include ../partials/footer %>
